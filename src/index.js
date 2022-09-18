@@ -17,10 +17,6 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-app.get('/', (req, res) => {
-  res.send('Project initialization')
-})
-
 app.use('/todos', todosRouter)
 
 const start = async () => {

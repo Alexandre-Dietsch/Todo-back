@@ -14,8 +14,9 @@ export const getAllTodos = async (req, res) => {
 // create one todo
 export const createOneTodo = async (req, res) => {
   try {
-    const todo = await Todo.create({ ...req.body })
-    res.status(201).json({ data: todo })
+    await Todo.create({ ...req.body })
+    const todos = await Todo.find({}).exec()
+    res.status(201).json({ data: todos })
   } catch (error) {
     console.error(error)
     res.status(400).end()
@@ -55,7 +56,8 @@ export const updateOneTodo = async (req, res) => {
     if (!updatedTodo)
       return res.status(400).json({ detail: 'This todo does not exist' })
 
-    res.status(200).json({ data: updatedTodo })
+    const todos = await Todo.find({}).lean().exec()
+    res.status(200).json({ data: todos })
   } catch (error) {
     console.error(error)
     res.status(400).json({ detail: 'Error while updating this todo' })
@@ -72,7 +74,8 @@ export const removeOneTodo = async (req, res) => {
     if (!removedTodo)
       return res.status(400).json({ detail: 'This todo does not exist' })
 
-    return res.status(200).json({ data: removedTodo })
+    const todos = await Todo.find({}).lean().exec()
+    return res.status(200).json({ data: todos })
   } catch (error) {
     console.error(error)
     res.status(400).json({ detail: 'Error while deleting this todo' })

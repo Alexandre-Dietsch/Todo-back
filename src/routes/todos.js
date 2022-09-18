@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllTodos, createOneTodo } from '../controllers/todos.js'
+import { getAllTodos, createOneTodo, getOneTodo } from '../controllers/todos.js'
 
 const router = express.Router()
 
@@ -7,6 +7,6 @@ const router = express.Router()
 router.route('/').get(getAllTodos).post(createOneTodo)
 
 // get, update or delete one todo
-router.route('/:id').get().put().delete()
+router.route('/:id').get(getOneTodo).put().delete()
 
 export default router

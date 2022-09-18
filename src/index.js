@@ -3,6 +3,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import * as dotenv from 'dotenv'
+import todosRouter from './routes/todos.js'
 
 // get environment variables to setup the server
 dotenv.config()
@@ -19,6 +20,8 @@ app.use(morgan('dev'))
 app.get('/', (req, res) => {
   res.send('Project initialization')
 })
+
+app.use('/todos', todosRouter)
 
 const start = async () => {
   try {

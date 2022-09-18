@@ -7,7 +7,7 @@ export const getAllTodos = async (req, res) => {
     res.status(200).json({ data: todos })
   } catch (error) {
     console.error(error)
-    res.status(400).end()
+    res.status(500).json({ detail: 'Error while retrieving todos' })
   }
 }
 
@@ -19,7 +19,7 @@ export const createOneTodo = async (req, res) => {
     res.status(201).json({ data: todos })
   } catch (error) {
     console.error(error)
-    res.status(400).end()
+    res.status(500).json({ detail: 'Error while creating a todo' })
   }
 }
 
@@ -35,7 +35,7 @@ export const getOneTodo = async (req, res) => {
   } catch (error) {
     console.error(error)
     res
-      .status(400)
+      .status(500)
       .json({ detail: 'Error while retrieving a todo with this ID' })
   }
 }
@@ -60,7 +60,7 @@ export const updateOneTodo = async (req, res) => {
     res.status(200).json({ data: todos })
   } catch (error) {
     console.error(error)
-    res.status(400).json({ detail: 'Error while updating this todo' })
+    res.status(500).json({ detail: 'Error while updating this todo' })
   }
 }
 
@@ -78,6 +78,6 @@ export const removeOneTodo = async (req, res) => {
     return res.status(200).json({ data: todos })
   } catch (error) {
     console.error(error)
-    res.status(400).json({ detail: 'Error while deleting this todo' })
+    res.status(500).json({ detail: 'Error while deleting this todo' })
   }
 }

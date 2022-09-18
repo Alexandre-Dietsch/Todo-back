@@ -8,7 +8,7 @@ import todosRouter from './routes/todos.js'
 // get environment variables to setup the server
 dotenv.config()
 const dbUrl = process.env.DB_URL
-const port = process.env.PORT
+const port = process.env.PORT || 4000
 
 const app = express()
 

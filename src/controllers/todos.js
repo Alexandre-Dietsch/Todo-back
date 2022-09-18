@@ -57,7 +57,24 @@ export const updateOneTodo = async (req, res) => {
 
     res.status(200).json({ data: updatedTodo })
   } catch (error) {
-    console.log(error)
+    console.error(error)
     res.status(400).json({ detail: 'Error while updating this todo' })
+  }
+}
+
+// remove a todo
+export const removeOneTodo = async (req, res) => {
+  try {
+    const removedTodo = await Todo.findOneAndRemove({
+      _id: req.params.id,
+    })
+
+    if (!removedTodo)
+      return res.status(400).json({ detail: 'This todo does not exist' })
+
+    return res.status(200).json({ data: removedTodo })
+  } catch (error) {
+    console.error(error)
+    res.status(400).json({ detail: 'Error while deleting this todo' })
   }
 }
